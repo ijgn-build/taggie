@@ -7,6 +7,11 @@ ActiveAdmin.register Memo do
     # モデルの入力項目を表示
     f.inputs
     # 登録・更新などのボタンの表示
+    f.inputs "Memos" do
+      f.has_many :memo_tags do |t|
+        t.input :tag
+      end
+    end
     f.actions
   end
 
