@@ -3,7 +3,7 @@ ja:
     models:
       admin_user: 管理者
       comment: コメント
-      name: 名前
+      memo: メモ
     attributes:
       admin_user:
         email: メールアドレス
