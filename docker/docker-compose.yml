@@ -1,0 +1,16 @@
+version: '3.7'
+services:
+  db:
+    image: postgres:9.6.15
+    container_name: taggie_postgres
+    ports:
+      - 5430:5432
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: taggie_development
+    hostname: postgres
+    restart: always
+    user: root
