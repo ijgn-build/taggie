@@ -1,14 +1,17 @@
 ActiveAdmin.register Memo do
-  permit_params :title, :description
+  permit_params :title, :description, memo_tags_attributes: [:memo_id, :tag_id, :name, :_destroy, :_edit]
 
   form do |f|
     # エラー表示枠を表示、シンボルで項目を指定
     f.semantic_errors :name
     # モデルの入力項目を表示
-    f.inputs
+    f.inputs "メモ" do
+        f.input :title
+        f.input :description
+    end
     # 登録・更新などのボタンの表示
-    f.inputs "Memos" do
-      f.has_many :memo_tags do |t|
+    f.inputs "タグ" do
+      f.has_many :memo_tags, allow_destroy: true, new_record: true  do |t|
         t.input :tag
       end
     end
