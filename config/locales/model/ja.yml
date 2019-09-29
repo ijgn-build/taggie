@@ -4,6 +4,7 @@ ja:
       admin_user: 管理者
       comment: コメント
       memo: メモ
+      tag: タグ
     attributes:
       admin_user:
         email: メールアドレス
@@ -13,5 +14,9 @@ ja:
       memo:
         title: タイトル
         description: 詳細
+        created_at: 作成日時
+        updated_at: 更新日時
+      tag:
+        name: タグ名
         created_at: 作成日時
         updated_at: 更新日時
