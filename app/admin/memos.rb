@@ -1,4 +1,3 @@
-require 'mechanize'
 ActiveAdmin.register Memo do
   permit_params :title, :description, memo_tags_attributes: [:memo_id, :tag_id, :name, :_destroy, :_edit]
 
@@ -6,8 +5,9 @@ ActiveAdmin.register Memo do
     layout 'active_admin'
     def show
       @mechanize = mechanize
-      render partial: 'show', locals: {page_content: @mechanize}
-      
+      @entities = tagging(@mechanize)
+      render partial: 'show', locals: {entites: @entities} 
+
       #post_params = permitted_params[:user]
       #@user = User.new(post_params)
       ## 何らかのカスタム処理
@@ -20,6 +20,7 @@ ActiveAdmin.register Memo do
       #  # layout: active_adminがないとヘッダ・フッタが出力されないので注意
       #  render "_form", layout: "active_admin"
       #end
+
     end
     def mechanize
       agent = Mechanize.new
@@ -27,6 +28,12 @@ ActiveAdmin.register Memo do
       page = agent.get('https://build.ijgn.jp/')
       
       page.at("body").text
+    end
+    def tagging(text_content)
+      language = Google::Cloud::Language.new
+      response = language.analyze_entities content: text_content, type: :PLAIN_TEXT
+
+      entities = response.entities
     end
   end
 

@@ -4,5 +4,11 @@
       <table border="0" cellspacing="0" cellpadding="0">
         <tbody>
           <tr class="row">
-            <td><%= page_content %></td>
+            <th> タグ 
+            <% entites.each do |entity| %>
+                <tr>
+                  <td> <%= entity.name %> </td>
+                 </tr>
+              <% end %>
+            </th>
           </tr>
